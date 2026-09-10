@@ -1,0 +1,58 @@
+﻿// sorting the number from the smallest number to the greatest number
+
+int[] numbers = { 4 , 5 , 3 , 2 , 1 };
+
+                   
+
+
+//         i=0   i < 4
+for(int i = 0; i < numbers.Length-1; i++) // if we remove this loop only the biggest number go to ende of the array , we can also try  i < 2 the biggest two numbers go to the end of the array
+{
+    //          j=0,1    j < 4
+    for (int j = 0; j < numbers.Length-1 ; j++) //  j < numbers.Length - 1 -i   same output but better performance  
+    {
+        //       5        3
+        if(numbers[j] > numbers[j+1])
+        {
+            // put  the value numbers[j] on the temp
+              //temp now is 5
+            int temp = numbers[j];
+
+            //put the value of numbers[j+1] in  numbers[j],   so value of numbers[j+1] == numbers[j] == 3  
+            numbers[j] = numbers[j+1];  
+            // put the value of temp in numbers[j+1] so value   5  on index 2  now
+            numbers[j+1] = temp;    
+        }
+    }
+}
+for(int i = 0;i < numbers.Length; i++)
+{
+    Console.WriteLine(numbers[i]);
+}
+// START:
+// { 4 , 5 , 3 , 2 , 1 }  Before loop starts
+
+// PASS 1 (i = 0):
+// { 4 , 5 , 3 , 2 , 1 }   i = 0, j = 0 (No swap: 4 < 5)
+// { 4 , 3 , 5 , 2 , 1 }   i = 0, j = 1 (Swapped 5 and 3)
+// { 4 , 3 , 2 , 5 , 1 }   i = 0, j = 2 (Swapped 5 and 2)
+// { 4 , 3 , 2 , 1 , 5 }   i = 0, j = 3 (Swapped 5 and 1) 
+
+// PASS 2 (i = 1):
+// { 3 , 4 , 2 , 1 , 5 }   i = 1, j = 0 (Swapped : 4 and 3)
+// { 3 , 2 , 4 , 1 , 5 }   i = 1, j = 1 (Swapped : 4 and 2)
+// { 3 , 2 , 1 , 4 , 5 }   i = 1, j = 2 (Swapped : 4 and 1)
+// { 3 , 2 , 1 , 4 , 5 }   i = 1, j = 3 (No swap: 4 < 5)
+
+
+// PASS 3 (i = 2):
+// { 2 , 3 , 1 , 4 , 5 }   i = 2, j = 0 (Swapped : 3 and 2)
+// { 2 , 1 , 3 , 4 , 5 }   i = 2, j = 1 (Swapped : 3 and 1)
+// { 2 , 1 , 3 , 4 , 5 }   i = 2, j = 2 (No swap:  3 < 4)
+// { 2 , 1 , 3 , 4 , 5 }   i = 2, j = 3 (No swap:  4 < 5)
+
+// PASS 4 (i = 3):
+// { 1 , 2 , 3 , 4 , 5 }   i = 3, j = 0 (Swapped : 2 and 1)
+// { 1 , 2 , 3 , 4 , 5 }   i = 3, j = 1 (Comparing index 1 and 2 --> 2 < 3)
+// { 1 , 2 , 3 , 4 , 5 }   i = 3, j = 2 (Comparing index 2 and 3 --> 3 < 4)
+// { 1 , 2 , 3 , 4 , 5 }   i = 3, j = 3 (Comparing index 3 and 4 --> 4 < 5)
